@@ -42,8 +42,8 @@ const checkInventory = (product_name, quantity) => {
         const newStock =
           parseInt(results[0].stock_quantity) - parseInt(quantity);
         connection.query(
-          'update products set stock_quantity=? where prod_name=?',
-          [newStock.toString(), product_name],
+          'update products set stock_quantity=? , product_sale = coalesce(product_sale, 0) + ? where prod_name=?',
+          [newStock.toString(), results[0].price * quantity, product_name],
           (error, results, fields) => {
             if (error) throw error;
             console.log(`Inventory updated for ${results.changedRows} row`);
