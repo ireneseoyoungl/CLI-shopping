@@ -1,5 +1,6 @@
 const inquirer = require('inquirer');
 const placeOrder = require('./customer');
+const managerView = require('./manager');
 const mysql = require('mysql');
 const connection = mysql.createConnection({
   host: '127.0.0.1',
@@ -26,6 +27,7 @@ inquirer
         placeOrder();
         break;
       case 'Manager':
+        managerView();
         break;
       case 'Supervisor':
         break;

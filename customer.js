@@ -37,7 +37,7 @@ const checkInventory = (product_name, quantity) => {
       if (error) throw error;
       if (results.length > 0) {
         console.log(
-          `Order placed! Your total is ${results[0].price * quantity}`
+          `Order placed! Your total is $${results[0].price * quantity}`
         );
         const newStock =
           parseInt(results[0].stock_quantity) - parseInt(quantity);
