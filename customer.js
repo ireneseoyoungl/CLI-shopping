@@ -8,8 +8,6 @@ const connection = mysql.createConnection({
   database: 'cli_store'
 });
 
-connection.connect();
-
 const placeOrder = () => {
   inquirer
     .prompt({
@@ -47,14 +45,15 @@ const checkInventory = (product_name, quantity) => {
           (error, results, fields) => {
             if (error) throw error;
             console.log(`Inventory updated for ${results.changedRows} row`);
+            connection.end();
             process.exit();
           }
         );
       } else {
         console.log(`Insufficient stock!`);
+        connection.end();
         process.exit();
       }
-      connection.end();
     }
   );
 };

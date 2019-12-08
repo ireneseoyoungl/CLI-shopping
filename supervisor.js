@@ -8,8 +8,6 @@ const connection = mysql.createConnection({
   database: 'cli_store'
 });
 
-connection.connect();
-
 const supervisorView = () => {
   inquirer
     .prompt({
